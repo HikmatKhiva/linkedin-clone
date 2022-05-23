@@ -9,7 +9,6 @@ import 'firebase/compat/firestore';
 import { useSelector } from 'react-redux';
 import { selectUser } from '../../features/userSlice';
 import FlipMove from "react-flip-move"
-
 const Feed = () => {
     const [posts, setPosts] = useState([]);
     const [input, setInput] = useState("");
@@ -26,9 +25,6 @@ const Feed = () => {
             })
     }, [])
     // Add Post
-
-    console.log(posts);
-
     const sendPost = (event) => {
         event.preventDefault()
         db.collection("posts").add({
@@ -59,7 +55,7 @@ const Feed = () => {
             </div>
             <div className="posts">
                 <FlipMove duration={750}>
-                    {posts.map(({ id, data: { name, description, message,timestamp,photoUrl } }) => (
+                    {posts.map(({ id, data: { name, description, message, timestamp, photoUrl } }) => (
                         <Post key={id} name={name} desc={description} message={message} photoUrl={photoUrl} time={timestamp} />
                     ))}
                 </FlipMove>

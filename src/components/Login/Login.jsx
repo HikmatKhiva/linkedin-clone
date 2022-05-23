@@ -10,7 +10,6 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
-
   const LoginIn = (e) => {
     e.preventDefault()
     auth.signInWithEmailAndPassword(email, password)
