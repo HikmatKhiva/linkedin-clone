@@ -3,7 +3,8 @@ import { LinkedIn } from '@mui/icons-material'
 import './login.css'
 import { useDispatch } from 'react-redux'
 import { auth } from '../../Firebase/firebase';
-import { login } from '../../features/userSlice'
+import { login } from '../../features/userSlice';
+import toast from 'react-hot-toast';
 const Login = () => {
   const [name, setName] = useState("");
   const [profilePic, setProfilePic] = useState("");
@@ -20,11 +21,13 @@ const Login = () => {
           email: authUser.user.email,
           photoUrl: authUser.user.photoURL,
         }))
-      }).catch(e => console.log(e));
+        toast.success(`Welcome ${authUser.user.displayName}`)
+      }).catch(e => toast.error(e.message));
+
   }
   const SignUp = () => {
     if (!name) {
-      return alert("Place enter a full name!")
+      return toast.error("Place enter a full name!")
     }
     auth.createUserWithEmailAndPassword(email, password)
       .then((authUser) => {
@@ -39,7 +42,8 @@ const Login = () => {
             photoUrl: profilePic,
           }))
         })
-      }).catch(e => console.log(e));
+      }).catch(e => toast.error(e.message));
+    // toast.success("Create new Account")
   };
   return (
     <div className='login'>

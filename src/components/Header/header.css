@@ -5,7 +5,7 @@
   width: 100vw;
   padding-top: 10px;
   width: 100%;
-  z-index: 9999;
+  z-index: 999;
   border-bottom: 0.1px solid lightgray;
   padding-bottom: 10px;
 }
